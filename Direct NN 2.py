@@ -20,8 +20,8 @@ w3 = torch.randn(hid2,hid3)
 
 hid4 = 3
 w4 = torch.randn(hid3,hid4)
-data_output = hid4
 
+data_output = hid4
 y = torch.randn(data_batch,data_output)
 
 for epoch in range(0,epoch_max):
