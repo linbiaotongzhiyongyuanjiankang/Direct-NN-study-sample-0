@@ -1,5 +1,4 @@
 import torch
-import matplotlib.pyplot as plt
 import numpy as np
 
 epoch_max = 1024
