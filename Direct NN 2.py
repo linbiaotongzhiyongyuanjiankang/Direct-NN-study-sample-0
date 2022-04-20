@@ -1,4 +1,5 @@
 import torch
+import matplotlib.pyplot as plt
 import numpy as np
 
 epoch_max = 1024
@@ -20,8 +21,8 @@ w3 = torch.randn(hid2,hid3)
 
 hid4 = 3
 w4 = torch.randn(hid3,hid4)
-
 data_output = hid4
+
 y = torch.randn(data_batch,data_output)
 
 for epoch in range(0,epoch_max):
@@ -67,12 +68,23 @@ print("w3",w3)
 print("w4",w4)
 
 '''
-    神经网络正向输出的简图：
+    神经网络信号正向输出的简图：自信号样本x输出到结果Y：
     s---(w1)--->h1---(w2)--->h2---(w3)--->h3---(w4)--->Y
     
-    神经网络反向传播梯度的简图：
+    神经网络反向传播梯度的简图：自Y为变量的损失函数到第一阶隐层权：
      Y--->(w4)--->h3--->(w3)--->h2--->(w2)--->h1--->(w1)
      
-    隐层w1、w2共用 dorate1
-    隐层w3、w4共用 dorate2
+     由 h_n = h_(n-1) * w_n 得到：
+     
+     grad_w_n = h'_(n-1) * grad_h_n
+     grad_h_(n-1) = grad_h_n * w'_n
+     
+    我们将h_n定义为隐层，其对应的w_n是该层的权；
+    
+    在这个模型中：
+    隐层权w1、w2共用 dorate1
+    隐层权w3、w4共用 dorate2
+    
+    dorate1更保守，
+    dorate2更激进
 '''
