@@ -63,18 +63,18 @@ for epoch in range(10000):
     Gsanloss = -torch.reciprocal(kGsanloss)
 
     Dloss = -torch.mean(torch.log(D_pro) + torch.log(1. - DG3))
-
-    optimizer_G1.zero_grad()
-    Gsanloss.backward(retain_graph=True)
-    optimizer_G1.step()
+    
+    optimizer_D.zero_grad()
+    Dloss.backward(retain_graph=True)
+    optimizer_D.step()
 
     optimizer_G2.zero_grad()
     Gsanloss.backward(retain_graph=True)
     optimizer_G2.step()
 
-    optimizer_D.zero_grad()
-    Dloss.backward()
-    optimizer_D.step()
+    optimizer_G1.zero_grad()
+    Gsanloss.backward()
+    optimizer_G1.step()
 
     print("Eopch:{}, Loss:{:.3f}".format(epoch + 1, Dloss))
 
